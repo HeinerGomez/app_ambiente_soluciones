@@ -1,0 +1,22 @@
+page-login {
+    [title] {
+        font-weight: bold;
+        text-align: center;
+    }
+    [line-below] {
+        border-bottom: 1px solid color($colors, 'divideColor');
+    }
+    [image-center] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+    .login-container {
+        margin-top: 10%;
+    }
+    [icon-pwd] {
+        font-size: 25px;
+    }
+}

@@ -1,5 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
 * {
-    font-family: 'Niramit', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     // color: color($colors, 'primaryText');
+}
+
+[bold] {
+    font-weight: bold;
+}
+
+[margin-button-generic] {
+    margin-top: 10%;
 }

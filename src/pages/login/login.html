@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title title>Iniciar Sesión</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div line-below>
+    <ion-thumbnail >
+      <img image-center src="assets/imgs/logo-gys.png" />
+    </ion-thumbnail>  
+  </div>
+  <div class="login-container">
+    <form>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Usuario</ion-label>
+              <ion-input type="text" name="username" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Contraseña</ion-label>
+              <ion-input [type]="typeInput" name="password" required></ion-input>
+              <button ion-button icon-only clear item-end (tap)="switchPasswordLooks()">
+                <ion-icon [name]="nameIcon" icon-pwd color="lightPrimary"></ion-icon>
+              </button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button ion-button block margin-button-generic bold> Ingresar </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>
