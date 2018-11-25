@@ -11,3 +11,41 @@
 [margin-button-generic] {
     margin-top: 10%;
 }
+
+.img-container {
+    // border: 1px solid white;
+    width: 100%;
+}
+
+[img-profile] {
+    // border: 1px solid red;
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+[image-rounder] {
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,.4);
+    box-shadow: 1px 0px 10px 7px rgba(255,255,255,.3);
+}
+
+[text-profile-menu-primary] {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+[text-profile-menu-secondary] {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+}
+
+ion-avatar > img.flat {
+    border: none !important;
+    border-radius: 0px;
+}

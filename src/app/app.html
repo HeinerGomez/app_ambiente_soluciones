@@ -1,1 +1,64 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<!-- menu -->
+<ion-menu [content]="content" type="reveal" >
+    <ion-header>
+        <ion-toolbar color="primary">
+            <div class="img-container">
+                <ion-thumbnail img-profile>
+                    <img image-rounder src="assets/imgs/person.png" />
+                </ion-thumbnail>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col text-center col-12>
+                            <div>
+                                <span text-profile-menu-primary>Heiner Gómez</span>
+                            </div>
+                            <div>
+                                <ion-icon name="radio-button-on" small color="danger"></ion-icon>
+                                <span text-profile-menu-secondary>En línea</span>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button ion-item>
+                <ion-avatar item-start>
+                    <img class="flat" src="assets/imgs/checkbox_list.png" />
+                </ion-avatar>
+                <span ion-text color="primaryText">Gestión de Clientes</span>
+            </button>
+            <button ion-item>
+                <ion-avatar item-start>
+                    <img class="flat" src="assets/imgs/file-success.png" />
+                </ion-avatar>
+                <span ion-text color="primaryText">Gestiones Realizadas</span>
+            </button>
+            <button ion-item>
+                <ion-avatar item-start>
+                    <img class="flat" src="assets/imgs/file.png" />
+                </ion-avatar>
+                <span ion-text color="primaryText">Gestiones en Borrador</span>
+            </button>
+            <button ion-item>
+                <ion-avatar item-start>
+                    <img class="flat" src="assets/imgs/archive.png" />
+                </ion-avatar>
+                <span ion-text color="primaryText">Gestiones no Enviadas</span>
+            </button>
+        </ion-list>
+        <ion-list>
+            <ion-list-header></ion-list-header>
+            <button ion-item>
+                <ion-avatar item-start>
+                    <img class="flat" src="assets/imgs/door_exit.png" />
+                </ion-avatar>
+                <span color="primaryText">Salir</span>
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<!-- navegacion -->
+<ion-nav [root]="rootPage" #content></ion-nav>
