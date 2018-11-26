@@ -13,7 +13,7 @@
                                 <span text-profile-menu-primary>Heiner Gómez</span>
                             </div>
                             <div>
-                                <ion-icon name="radio-button-on" small color="danger"></ion-icon>
+                                <ion-icon name="radio-button-on" small color="success"></ion-icon>
                                 <span text-profile-menu-secondary>En línea</span>
                             </div>
                         </ion-col>
@@ -24,7 +24,7 @@
     </ion-header>
     <ion-content>
         <ion-list>
-            <button ion-item>
+            <button ion-item (tap)="openPage()">
                 <ion-avatar item-start>
                     <img class="flat" src="assets/imgs/checkbox_list.png" />
                 </ion-avatar>

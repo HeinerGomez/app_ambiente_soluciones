@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Gestión de Clientes</ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu" medium></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button class="animated fadeInDown" ion-item *ngFor="let item of checklist" (tap)="selectChecklist(item)">
+      <h2>{{ item.name }}</h2>
+      <p>{{ item.note }}</p>
+      <ion-note note-top item-end>
+        {{ item.date }}
+      </ion-note>
+    </button>
+  </ion-list>
+</ion-content>
+
+<ion-footer padding>
+  <div widget-search>
+    <ion-item>
+      <ion-input type="text" placeholder="Busca una checklist" #searchTerm (ionChange)="handleInputSearch(searchTerm)"></ion-input>
+      <ion-icon name="search" color="success" item-end></ion-icon>
+    </ion-item>
+  </div>
+</ion-footer>
