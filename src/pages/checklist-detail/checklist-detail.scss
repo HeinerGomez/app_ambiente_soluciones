@@ -1,0 +1,14 @@
+page-checklist-detail {
+    [text-item] {
+        font-size: 18px;
+        color: map-get($colors, 'secondaryText');
+    }
+    [icon-item] {
+        font-size: 25px;
+        color: map-get($colors, 'primary');
+    }
+    [header-card-list] {
+        color: map-get($colors, 'primaryText');
+        border-bottom: 1px dashed map-get($colors, 'lightPrimary');
+    }
+}

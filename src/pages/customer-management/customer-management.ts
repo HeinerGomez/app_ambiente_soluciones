@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CHECKLIST } from '../../api/checklist';
+import { ChecklistDetailPage } from '../checklist-detail/checklist-detail';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,7 @@ export class CustomerManagementPage {
   }
   
   public selectChecklist(checklist): void {
-    console.log("checklist: ", checklist);
+    this.navCtrl.push(ChecklistDetailPage, {checklist})
   }
 
   public handleInputSearch(inputSearch): void {

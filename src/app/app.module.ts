@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 // modulos de las pages
 import { LoginPageModule } from '../pages/login/login.module';
 import { CustomerManagementPageModule } from '../pages/customer-management/customer-management.module';
+import { ChecklistDetailPageModule } from '../pages/checklist-detail/checklist-detail.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CustomerManagementPageModule } from '../pages/customer-management/custo
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
-    CustomerManagementPageModule
+    CustomerManagementPageModule,
+    ChecklistDetailPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ checklist['name'] }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+  <ion-card>
+    <ion-card-header header-card-list>
+      <h1>De Tienda</h1>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon [name]="iconTypeCheck == true ? 'checkbox' : 'square'" (tap)="handleChangeCheck()" icon-item></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <span text-item>Huevos</span>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Nota: </ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="checkbox" icon-item></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <span text-item>Leche</span>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Nota: </ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-10>
+            <span text-item>Como fue la atención</span>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Nota: </ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-10>
+            <span text-item>Como fue la atención</span>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Nota: </ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-10>
+            <span text-item>Como fue la atención</span>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Nota: </ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="checkbox" icon-item></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <span text-item>Leche</span>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Nota: </ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="checkbox" icon-item></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <span text-item>Leche</span>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Nota: </ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab color="secondary">
+      <ion-icon name="apps"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <button ion-fab color="success">
+        <ion-icon name="bookmark"></ion-icon>
+      </button>
+    </ion-fab-list>
+    <ion-fab-list side="top">
+      <button ion-fab color="success">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
