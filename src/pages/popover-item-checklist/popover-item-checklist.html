@@ -1,0 +1,23 @@
+<ion-content>
+  <h3 text-center><b>Es Extranjero</b></h3>
+  <hr>
+  <ion-list radio-group>
+    <ion-item>
+      <ion-label>Sí</ion-label>
+      <ion-radio value="1" checked></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>No</ion-label>
+      <ion-radio value="0"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Observación</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <button ion-button block color="secondary" (click)="saveItem()">Aceptar</button>
+</ion-footer>

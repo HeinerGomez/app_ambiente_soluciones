@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, PopoverOptions } from 'ionic-angular';
+import { PopoverItemChecklistPage } from '../popover-item-checklist/popover-item-checklist';
 
 @IonicPage()
 @Component({
@@ -9,15 +10,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ChecklistDetailPage {
   
   public checklist: any[];
-  public iconTypeCheck: boolean;
+  public categories: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private popoverCtrl: PopoverController) {
     this.checklist = this.navParams.get('checklist');
-    this.iconTypeCheck = true;
+    this.categories = this.checklist['categories'];
+    console.log(this.categories);
   }
 
-  public handleChangeCheck(): void {    
-    this.iconTypeCheck = !this.iconTypeCheck;
+  public openPopover(): void {
+    const popoverOptions: PopoverOptions = {
+      'enableBackdropDismiss': true
+    }
+    let popover = this.popoverCtrl.create(PopoverItemChecklistPage);
+    popover.present();
+  }
+
+  public nextCategory(): void {
+    this.navCtrl.push(ChecklistDetailPage);
   }
 
 }

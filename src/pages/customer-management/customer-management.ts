@@ -10,10 +10,10 @@ import { ChecklistDetailPage } from '../checklist-detail/checklist-detail';
 })
 export class CustomerManagementPage {
   
-  public checklist: any[];
+  public checklist: {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.checklist = CHECKLIST;
+    this.checklist = CHECKLIST.checklist;
   }
   
   public selectChecklist(checklist): void {
@@ -23,9 +23,9 @@ export class CustomerManagementPage {
   public handleInputSearch(inputSearch): void {
     const searchTerm = inputSearch.value.trim();
     if (searchTerm != "") {
-      this.checklist = CHECKLIST.filter( item => ( item.name.toLowerCase().includes(searchTerm.toLowerCase()) ));
+      this.checklist = CHECKLIST.checklist.filter( item => ( item.name.toLowerCase().includes(searchTerm.toLowerCase()) ));
     } else {
-      this.checklist = CHECKLIST;
+      this.checklist = CHECKLIST.checklist;
     }
   }
 

@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { LoginPageModule } from '../pages/login/login.module';
 import { CustomerManagementPageModule } from '../pages/customer-management/customer-management.module';
 import { ChecklistDetailPageModule } from '../pages/checklist-detail/checklist-detail.module';
+import { PopoverItemChecklistPageModule } from '../pages/popover-item-checklist/popover-item-checklist.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ChecklistDetailPageModule } from '../pages/checklist-detail/checklist-d
     LoginPageModule,
     CustomerManagementPageModule,
     ChecklistDetailPageModule,
+    PopoverItemChecklistPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
