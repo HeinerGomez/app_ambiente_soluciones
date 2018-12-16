@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { CustomerManagementPage } from '../customer-management/customer-management';
 
 @IonicPage()
 @Component({
@@ -12,10 +13,11 @@ export class LoginPage {
   public passwordLooks: boolean;
   public typeInput: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController) {
     this.nameIcon = 'eye';
     this.passwordLooks = false;
     this.typeInput = 'password';
+    this.menuCtrl.enable(false);
   }
 
   public switchPasswordLooks(): void {
@@ -29,6 +31,10 @@ export class LoginPage {
       this.passwordLooks = true;
       this.typeInput = 'text';
     }
+  }
+
+  public login(): void {
+    this.navCtrl.push(CustomerManagementPage);
   }
 
 }

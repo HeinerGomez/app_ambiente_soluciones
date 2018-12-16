@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CHECKLIST } from '../../api/checklist';
 import { ChecklistDetailPage } from '../checklist-detail/checklist-detail';
+import { ApiHttpProvider } from '../../providers/api-http/api-http';
 
 @IonicPage()
 @Component({
@@ -10,10 +10,18 @@ import { ChecklistDetailPage } from '../checklist-detail/checklist-detail';
 })
 export class CustomerManagementPage {
   
-  public checklist: {};
+  public checklist: any[];
+  public checklistFullData: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.checklist = CHECKLIST.checklist;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private apiHttp: ApiHttpProvider) {
+    
+    this.apiHttp.get('/checklist').then( (response: any) => {
+      this.checklist = JSON.parse(response.data);
+      this.checklistFullData = JSON.parse(response.data);
+    }).catch( error => {
+      console.error(JSON.stringify(error));
+    });
   }
   
   public selectChecklist(checklist): void {
@@ -23,9 +31,9 @@ export class CustomerManagementPage {
   public handleInputSearch(inputSearch): void {
     const searchTerm = inputSearch.value.trim();
     if (searchTerm != "") {
-      this.checklist = CHECKLIST.checklist.filter( item => ( item.name.toLowerCase().includes(searchTerm.toLowerCase()) ));
+      this.checklist = this.checklistFullData.filter( item => ( item.nom_checkl.toLowerCase().includes(searchTerm.toLowerCase()) ));
     } else {
-      this.checklist = CHECKLIST.checklist;
+      this.checklist = this.checklistFullData;
     }
   }
 

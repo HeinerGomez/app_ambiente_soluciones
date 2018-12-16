@@ -10,6 +10,10 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { CustomerManagementPageModule } from '../pages/customer-management/customer-management.module';
 import { ChecklistDetailPageModule } from '../pages/checklist-detail/checklist-detail.module';
 import { PopoverItemChecklistPageModule } from '../pages/popover-item-checklist/popover-item-checklist.module';
+import { ApiHttpProvider } from '../providers/api-http/api-http';
+import { HTTP } from '@ionic-native/http';
+import { ListItemPageModule } from '../pages/list-item/list-item.module';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { PopoverItemChecklistPageModule } from '../pages/popover-item-checklist/
     LoginPageModule,
     CustomerManagementPageModule,
     ChecklistDetailPageModule,
-    PopoverItemChecklistPageModule
+    PopoverItemChecklistPageModule,
+    ListItemPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +35,9 @@ import { PopoverItemChecklistPageModule } from '../pages/popover-item-checklist/
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiHttpProvider,
+    HTTP
   ]
 })
 export class AppModule {}

@@ -1,45 +1,41 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>prueba</ion-title>
+    <ion-title>{{ checklist.nom_checkl }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cards-bg">
-
-  <h2 text-center>
-    {{ categories[0].name }} 
-  </h2>
-  <hr>
-
-  <ion-card *ngFor="let item of categories[0].items">
-    <button ion-item>
-      <h2><b>{{ item.name }}</b></h2>
-      <p>
-        <ion-icon name="checkbox" color="lightPrimary"></ion-icon>
-        <ion-note>Sí / No</ion-note>
-      </p>
-      <p>
-        <ion-note>
-          Esta haciendo los papeles para radicarse en colombia
-        </ion-note>
-      </p>
-      <ion-icon name="checkmark" item-end color="success"></ion-icon>
+<ion-content padding>
+  <h2 text-center >Secciones</h2>
+  <hr />
+  <ion-list>
+    <button class="animated fadeInDown" *ngFor="let category of categories" ion-item (tap)="selectedCategoty(category)" >
+      {{ category.nom_catego }}
+      <ion-icon name="checkmark" color="success" item-end></ion-icon>
     </button>
-  </ion-card>
+  </ion-list>
 
   <ion-fab right bottom>
     <button ion-fab color="secondary">
       <ion-icon name="apps"></ion-icon>
     </button>
     <ion-fab-list side="left">
-      <button ion-fab color="success">
+      <button ion-fab color="success" (tap)="saveToDraft()">
         <ion-icon name="bookmark"></ion-icon>
       </button>
     </ion-fab-list>
     <ion-fab-list side="top">
-      <button ion-fab color="success" (tap)="nextCategory()">
-        <ion-icon name="arrow-forward"></ion-icon>
+      <button  ion-fab color="success" (tap)="send()">
+        <ion-icon name="send"></ion-icon>
       </button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
+
+<ion-footer padding>
+  <div widget-search>
+    <ion-item>
+      <ion-input type="text" placeholder="Busca una categoria" #searchTerm (ionChange)="handleInputSearch(searchTerm)"></ion-input>
+      <ion-icon name="search" color="success" item-end></ion-icon>
+    </ion-item>
+  </div>
+</ion-footer>

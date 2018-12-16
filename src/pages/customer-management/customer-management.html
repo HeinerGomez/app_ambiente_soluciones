@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Gestión de Clientes</ion-title>
+    <ion-title>Formularios</ion-title>
     <ion-buttons left>
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu" medium></ion-icon>
@@ -10,13 +10,15 @@
 </ion-header>
 
 <ion-content padding>
+  <h2 text-center >Formularios</h2>
+  <hr />
   <ion-list>
     <button class="animated fadeInDown" ion-item *ngFor="let item of checklist" (tap)="selectChecklist(item)">
-      <h2>{{ item.name }}</h2>
-      <p>{{ item.note }}</p>
+      <h2>{{ item.nom_checkl }}</h2>
+      <!-- <p>{{ item.note }}</p>
       <ion-note note-top item-end>
         {{ item.date }}
-      </ion-note>
+      </ion-note> -->
     </button>
   </ion-list>
 </ion-content>

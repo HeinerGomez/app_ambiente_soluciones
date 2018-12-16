@@ -88,6 +88,60 @@ $colors: (
   animation-name: fadeInDown;
 }
 
+// alert message
+.alert-md {
+  .alert-title {
+      font-size: 15px !important;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 10px;
+  }
+  .alert-head,
+  .alert-input,
+  .alert-message,
+  .button-inner {
+      color: theme-colors('textColors', 'primary') !important;
+  }
+  .button-inner {
+      font-weight: bold;
+  }
+  .alert-head {
+      padding: 20px 24px 15px 24px !important;
+      text-align: center !important;
+  }
+  .alert-input-group {
+      padding: 0 24px 10px 24px !important;
+  }
+  .alert-message {
+      overflow-y: hidden;
+      max-height: 40px !important;
+      padding: 0 24px 0px 24px !important;
+  }
+  .alert-input {
+      border-bottom: 1px solid theme-colors('mainColors', 'accent') !important;
+  }
+  .alert-wrapper {
+      background-color: theme-colors('mainColors', 'primary') !important;
+      border-radius: 10px !important;
+  }
+   ::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: theme-colors('textColors', 'accent') !important;
+  }
+   ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: theme-colors('textColors', 'accent') !important;
+  }
+   :-ms-input-placeholder {
+      /* IE 10+ */
+      color: theme-colors('textColors', 'accent') !important;
+  }
+   :-moz-placeholder {
+      /* Firefox 18- */
+      color: theme-colors('textColors', 'accent') !important;
+  }
+}
+
 
 
 
