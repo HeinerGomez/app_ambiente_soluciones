@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChecklistDetailPage } from '../checklist-detail/checklist-detail';
 import { ApiHttpProvider } from '../../providers/api-http/api-http';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
@@ -12,11 +13,33 @@ export class CustomerManagementPage {
   
   public checklist: any[];
   public checklistFullData: any[];
+  private user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private apiHttp: ApiHttpProvider) {
+              private apiHttp: ApiHttpProvider, private localStorage: NativeStorage) {
+    // obtengo los datos del usuario
+    if (this.navParams.get('user')) {
+      this.user = this.navParams.get('user');
+      this.generateRequest();
+    } else {
+      this.localStorage.getItem('user').then(_user => {
+        this.user = _user;
+        this.generateRequest();
+      });
+    }
     
-    this.apiHttp.get('/checklist').then( (response: any) => {
+  }
+
+  ionViewCanEnter() {
+    console.log("El usuario: ", JSON.stringify(this.user));
+    // this.generateRequest();
+  }
+
+  private generateRequest(): void {
+    const params = {
+      'token': this.user.token
+    }
+    this.apiHttp.get('/checklist', params).then( (response: any) => {
       this.checklist = JSON.parse(response.data);
       this.checklistFullData = JSON.parse(response.data);
     }).catch( error => {
@@ -25,7 +48,10 @@ export class CustomerManagementPage {
   }
   
   public selectChecklist(checklist): void {
-    this.navCtrl.push(ChecklistDetailPage, {checklist})
+    this.navCtrl.push(ChecklistDetailPage, {checklist}).then(()=> {
+    }).catch(error => {
+      console.error("Error: ", JSON.stringify(error));
+    });
   }
 
   public handleInputSearch(inputSearch): void {

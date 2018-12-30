@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // componente root
 import { MyApp } from './app.component';
 // modulos de las pages
@@ -13,7 +14,8 @@ import { PopoverItemChecklistPageModule } from '../pages/popover-item-checklist/
 import { ApiHttpProvider } from '../providers/api-http/api-http';
 import { HTTP } from '@ionic-native/http';
 import { ListItemPageModule } from '../pages/list-item/list-item.module';
-
+import { NativeStorage } from '@ionic-native/native-storage';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,15 @@ import { ListItemPageModule } from '../pages/list-item/list-item.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
     CustomerManagementPageModule,
     ChecklistDetailPageModule,
     PopoverItemChecklistPageModule,
-    ListItemPageModule
+    ListItemPageModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,6 +42,7 @@ import { ListItemPageModule } from '../pages/list-item/list-item.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiHttpProvider,
+    NativeStorage,
     HTTP
   ]
 })

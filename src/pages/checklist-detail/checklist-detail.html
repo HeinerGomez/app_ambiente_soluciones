@@ -10,7 +10,15 @@
   <ion-list>
     <button class="animated fadeInDown" *ngFor="let category of categories" ion-item (tap)="selectedCategoty(category)" >
       {{ category.nom_catego }}
-      <ion-icon name="checkmark" color="success" item-end></ion-icon>
+      <ion-icon [name]="category?.isAnswered ? 'checkmark' : 'alert'"  [color]="category?.isAnswered ? 'success' : 'warning'" item-end></ion-icon>
+    </button>
+    <button class="animated fadeInDown" ion-item (tap)="capturePhoto()">
+      Tomar Foto
+      <ion-icon [name]="photo?.isCapture ? 'checkmark' : 'alert'"  [color]="photo?.isCapture ? 'success' : 'warning'" item-end></ion-icon>
+    </button>
+    <button class="animated fadeInDown" ion-item (tap)="captureFirm()">
+      Firmar
+      <ion-icon [name]="firm?.isCapture ? 'checkmark' : 'alert'"  [color]="firm?.isCapture ? 'success' : 'warning'" item-end></ion-icon>
     </button>
   </ion-list>
 

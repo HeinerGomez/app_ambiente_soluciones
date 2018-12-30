@@ -7,44 +7,47 @@
 <ion-content>
   <h2 text-center>Cuestionario</h2>
   <hr />
-  <div *ngFor="let item of itemsList; let i = index">
-    <ion-card class="card-response" *ngIf="item.ind_aplchk == '1'">
-      <div padding>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-10>
-              <p>{{ item.nom_itemxx }}</p>
-            </ion-col>
-            <ion-col col-2>
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12>
-              <ion-item>
-                <ion-label floating>Observacion <small *ngIf="item.ind_obliga == '1'">( Obligatorio )</small> </ion-label>
-                <ion-input type="text" name="respuesta" ></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-    </ion-card>
-    <ion-card class="card-response" *ngIf="item.ind_aplchk == '0'">
-      <div padding>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-12>
-              <ion-item>
-                <ion-label floating>{{ item.nom_itemxx }}<small *ngIf="item.ind_obliga == '1'">( Obligatorio )</small></ion-label>
-                <ion-input type="text" name="respuesta" ></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-    </ion-card>
-  </div>
+  <form  >
+    <div *ngFor="let item of itemsList; let i = index">
+      <ion-card class="card-response" *ngIf="item.ind_aplchk == '1'">
+        <div padding>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-10>
+                <p>{{ item.nom_itemxx }}</p>
+              </ion-col>
+              <ion-col col-2>
+                <ion-checkbox name="boxItem" [(ngModel)]="form.items[i].boxValue"></ion-checkbox>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <ion-item>
+                  <ion-label floating>Observacion <small *ngIf="item.ind_obliga == '1'">( Obligatorio )</small>
+                  </ion-label>
+                  <ion-input type="text" name="respuesta" [(ngModel)]="form?.items[i].response" [required]="item.ind_obliga == '1'"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card>
+      <ion-card class="card-response" *ngIf="item.ind_aplchk == '0'">
+        <div padding>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <ion-item>
+                  <ion-label floating>{{ item.nom_itemxx }}<small *ngIf="item.ind_obliga == '1'">( Obligatorio )</small></ion-label>
+                  <ion-input type="text" name="respuesta" [(ngModel)]="form?.items[i].response" [required]="item.ind_obliga == '1'"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card>
+    </div>
+  </form>
 </ion-content>
 <ion-footer>
   <button ion-button block color="secondary" (tap)="save()">Guardar Sección</button>

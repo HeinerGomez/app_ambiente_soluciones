@@ -4,13 +4,13 @@
         <ion-toolbar color="primary">
             <div class="img-container">
                 <ion-thumbnail img-profile>
-                    <img image-rounder src="assets/imgs/person.png" />
+                    <img image-rounder [src]="user?.foto" onError="this.src='assets/imgs/person.png'" />
                 </ion-thumbnail>
                 <ion-grid>
                     <ion-row>
                         <ion-col text-center col-12>
                             <div>
-                                <span text-profile-menu-primary>Heiner Gómez</span>
+                                <span text-profile-menu-primary>{{ user?.nombre }}</span>
                             </div>
                             <div>
                                 <ion-icon name="radio-button-on" small color="success"></ion-icon>
