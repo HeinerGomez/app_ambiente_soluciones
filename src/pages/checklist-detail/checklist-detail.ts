@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, PopoverOptions, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, PopoverOptions, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import { PopoverItemChecklistPage } from '../popover-item-checklist/popover-item-checklist';
 import { ApiHttpProvider } from '../../providers/api-http/api-http';
 import { ListItemPage } from '../list-item/list-item';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { PopupCapturePhotoPage } from '../popup-capture-photo/popup-capture-photo';
+import { PopupCaptureFirmPage } from '../popup-capture-firm/popup-capture-firm';
 
 
 @IonicPage()
@@ -23,15 +25,24 @@ export class ChecklistDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private popoverCtrl: PopoverController, private http: ApiHttpProvider,
-              private alertCtrl: AlertController, private nativeStorage: NativeStorage) {
-    this.photo = {
-      'isCapture': false,
-      'img': ''
-    };
-    this.firm = {
-      'isCapture': false,
-      'img': ''
-    }
+              private alertCtrl: AlertController, private nativeStorage: NativeStorage,
+              private modalCtrl: ModalController, private loadCtrl: LoadingController) {
+    this.nativeStorage.getItem('firm').then(firm => {
+      this.firm = firm;
+    }).catch(error => {
+      this.firm = {
+        'isCapture': false,
+        'img': ''
+      }
+    });
+    this.nativeStorage.getItem('photo').then(photo => {
+      this.photo = photo;
+    }).catch(error => {
+      this.photo = {
+        'isCapture': false,
+        'img': ''
+      };
+    });
     this.checklist = this.navParams.get('checklist');
     this.nativeStorage.getItem('user').then( user => {
       this.user = user;
@@ -41,6 +52,22 @@ export class ChecklistDetailPage {
   }
 
   ionViewCanEnter() {
+    this.nativeStorage.getItem('firm').then(firm => {
+      this.firm = firm;
+    }).catch(error => {
+      this.firm = {
+        'isCapture': false,
+        'img': ''
+      }
+    });
+    this.nativeStorage.getItem('photo').then(photo => {
+      this.photo = photo;
+    }).catch(error => {
+      this.photo = {
+        'isCapture': false,
+        'img': ''
+      };
+    });
     this.nativeStorage.getItem('user').then( user => {
       this.user = user;
       // obtengo las categorias
@@ -52,6 +79,10 @@ export class ChecklistDetailPage {
     const params = {
       'token': this.user.token
     };
+    let loading = this.loadCtrl.create({
+      content: 'Cargando ...'
+    });
+    loading.present();
     this.http.get(`/checklist/${this.checklist.cod_checkl}/categories`, params).then(response => {
       if (response.data) {
         const data = JSON.parse(response.data);
@@ -59,6 +90,7 @@ export class ChecklistDetailPage {
         this.fullCategories = this.categories;
         this.getChecklistInLocalStorage();
       }
+      loading.dismiss();
     });
   }
 
@@ -117,15 +149,21 @@ export class ChecklistDetailPage {
   }
 
   private sendForm(): void {
-    
+    let loading = this.loadCtrl.create({
+      content: 'Cargando ...'
+    });
+    loading.present();
     // obtengo la checklist que se enviará a la api
     this.nativeStorage.getItem('checklist').then(checklist => {
       const params = {
         'checklist': checklist,
-        'token': this.user.token
+        'token': this.user.token,
+        'firm': this.firm,
+        'photo': this.photo
       };
       this.http.post('/checklistanswered', params).subscribe((response: any) => {
-        console.log('Respuesta: ', JSON.stringify(response.data));
+        console.log(JSON.stringify(response));
+        loading.dismiss();
         this.alertCtrl.create({
           'title': ``,
           'message': 'Se ha enviado el formulario',
@@ -151,6 +189,7 @@ export class ChecklistDetailPage {
             }
           ]
         }).present();
+        loading.dismiss();
       });
     }).catch(error => {
       console.error("El Error: ", JSON.stringify(error));
@@ -178,14 +217,39 @@ export class ChecklistDetailPage {
           }
         }
       }
+    }).catch(error => {
+      console.log("ERROR :::", JSON.stringify(error));
     });
   }
 
   public capturePhoto(): void {
-    
+    let modalPhoto = this.modalCtrl.create(PopupCapturePhotoPage);
+    modalPhoto.onDidDismiss( data => {
+      this.nativeStorage.getItem('photo').then(photo => {
+        this.photo = photo;
+      }).catch(error => {
+        this.photo = {
+          'isCapture': false,
+          'img': ''
+        };
+      });
+    });
+    modalPhoto.present();
   }
 
   public captureFirm(): void {
+    let modalFirm = this.modalCtrl.create(PopupCaptureFirmPage);
+    modalFirm.onDidDismiss( data => {
+      this.nativeStorage.getItem('firm').then(firm => {
+        this.firm = firm;
+      }).catch(error => {
+        this.firm = {
+          'isCapture': false,
+          'img': ''
+        }
+      });
+    });
+    modalFirm.present();
 
   }
 

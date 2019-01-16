@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="text_icons">
+    <ion-title text-center>Tomar Foto</ion-title>
+    <ion-buttons end>
+        <button ion-button (tap)="closeModal()">
+          <span ion-text color="primary" showWhen="ios">Cerrar</span>
+          <ion-icon name="md-close" color="primary" showWhen="android,windows" style="font-size: 27px"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <img src="{{photoImage}}" onError="this.src='assets/imgs/camera.png'" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button color='primary' block (tap)="openCamera()" >Tomar Foto</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <button ion-button [disabled]="photoImage == ''" color="secondary" block (tap)="savePhoto()" >Enviar</button>
+</ion-footer>

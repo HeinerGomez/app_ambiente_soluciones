@@ -31,8 +31,10 @@ export class CustomerManagementPage {
   }
 
   ionViewCanEnter() {
-    console.log("El usuario: ", JSON.stringify(this.user));
-    // this.generateRequest();
+    this.localStorage.getItem('user').then(_user => {
+      this.user = _user;
+      this.generateRequest();
+    });
   }
 
   private generateRequest(): void {

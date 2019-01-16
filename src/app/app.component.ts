@@ -27,10 +27,15 @@ export class MyApp {
    this.getDataUser();
   }
 
+  ionViewCanEnter() {
+   this.getDataUser();
+  }
+
   public getDataUser(): void {
     this.localSotrage.getItem('user').then( _user => {
       this.user = _user;
     }).catch( error => {
+      console.error("ERRROR: ", JSON.stringify(error));
       this.user = {
         'foto': 'assets/imgs/person.png',
         'nombre': 'Desconocido',
@@ -43,5 +48,13 @@ export class MyApp {
     this.rootPage = CustomerManagementPage;
     this.menuCtrl.close();
   }
+  
+  public logout(): void {
+    this.menuCtrl.close();
+    this.menuCtrl.enable(false);
+    this.rootPage = LoginPage;
+    this.localSotrage.clear();
+  }
+
 }
 

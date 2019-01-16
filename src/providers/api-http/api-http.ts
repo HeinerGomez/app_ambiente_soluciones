@@ -19,6 +19,7 @@ export class ApiHttpProvider {
 
   public get(endPoint: string, params = {}) {
     const full_url = this.url_api + endPoint;
+    params['keyClient'] = ENVIRONMENT.KEY_CLIENT;
     return this.http.get(full_url, params, this.headers).then( data => data );
   }
 
@@ -33,6 +34,7 @@ export class ApiHttpProvider {
     const full_url = this.url_api + endPoint;
     let postData = new FormData();
     postData.append('body', JSON.stringify(body));
+    postData.append('keyClient', ENVIRONMENT.KEY_CLIENT);
     return this._http.post(full_url, postData);
     // return this.http.post(full_url, body, headers);
     // return this._http.post(full_url, body, httpOptions).pipe( map( (res: any) => {
