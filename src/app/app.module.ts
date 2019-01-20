@@ -20,6 +20,7 @@ import { ListItemPageModule } from '../pages/list-item/list-item.module';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HttpClientModule } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera';
+import { Network } from '@ionic-native/network';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { Camera } from '@ionic-native/camera';
     ApiHttpProvider,
     NativeStorage,
     HTTP,
-    Camera
+    Camera,
+    Network
   ]
 })
 export class AppModule {}

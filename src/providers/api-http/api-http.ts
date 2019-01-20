@@ -1,6 +1,5 @@
 import { HTTP } from '@ionic-native/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENVIRONMENT } from '../../environment/environment';
 
@@ -24,22 +23,11 @@ export class ApiHttpProvider {
   }
 
   public post(endPoint: string, body: any) {
-    // let headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-    const httpOptions = {
-      headers: new HttpHeaders({
-          'Content-Type':  'application/json'
-      })
-    };
-    // let headers: HttpHeaders = {'Content-Type': 'application/x-www-form-urlencoded'};
     const full_url = this.url_api + endPoint;
     let postData = new FormData();
     postData.append('body', JSON.stringify(body));
     postData.append('keyClient', ENVIRONMENT.KEY_CLIENT);
     return this._http.post(full_url, postData);
-    // return this.http.post(full_url, body, headers);
-    // return this._http.post(full_url, body, httpOptions).pipe( map( (res: any) => {
-    //   return res;
-    // }));
   }
 
   public put(endPoint: string, body: any) {

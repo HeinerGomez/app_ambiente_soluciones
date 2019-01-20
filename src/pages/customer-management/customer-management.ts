@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { ChecklistDetailPage } from '../checklist-detail/checklist-detail';
 import { ApiHttpProvider } from '../../providers/api-http/api-http';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -16,7 +16,9 @@ export class CustomerManagementPage {
   private user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private apiHttp: ApiHttpProvider, private localStorage: NativeStorage) {
+              private apiHttp: ApiHttpProvider, private localStorage: NativeStorage,
+              private menuCtrl: MenuController) {
+    this.menuCtrl.enable(true);
     // obtengo los datos del usuario
     if (this.navParams.get('user')) {
       this.user = this.navParams.get('user');

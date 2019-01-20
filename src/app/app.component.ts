@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
+import { Platform, MenuController, LoadingController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { CustomerManagementPage } from '../pages/customer-management/customer-management';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Network } from '@ionic-native/network';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,10 +14,20 @@ export class MyApp {
   rootPage:any = LoginPage;
   
   public user: any;
+  public estaAutenticado = false;
+  public sinInternet = false;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, 
-              private menuCtrl: MenuController, private localSotrage: NativeStorage) {
+              private menuCtrl: MenuController, private localSotrage: NativeStorage,
+              private loadCtrl: LoadingController, private event: Events, 
+              private network: Network) {
     platform.ready().then(() => {
+      this.network.onDisconnect().subscribe(() => {
+        this.sinInternet = true;
+      });
+      this.network.onConnect().subscribe(() => {
+        this.sinInternet = false;
+      });
       this.getDataUser();
       statusBar.styleDefault();
       splashScreen.hide();
@@ -32,15 +43,29 @@ export class MyApp {
   }
 
   public getDataUser(): void {
+    this.user = {
+      'foto': 'assets/imgs/person.png',
+      'nombre': 'Desconocido',
+      'token': null
+    }    
     this.localSotrage.getItem('user').then( _user => {
       this.user = _user;
+      console.log("El usuario: ", JSON.stringify(this.user));
+      this.estaAutenticado = true;
+      this.rootPage = CustomerManagementPage;
     }).catch( error => {
       console.error("ERRROR: ", JSON.stringify(error));
       this.user = {
         'foto': 'assets/imgs/person.png',
         'nombre': 'Desconocido',
         'token': null
-      }
+      };
+      this.estaAutenticado = false;
+    });
+    this.event.subscribe('usuario:iniciado', val => {
+      this.estaAutenticado = true;
+      console.log("El usuario subscrito: ", JSON.stringify(val));
+      this.user = val;
     });
   }
 
@@ -50,10 +75,33 @@ export class MyApp {
   }
   
   public logout(): void {
-    this.menuCtrl.close();
-    this.menuCtrl.enable(false);
-    this.rootPage = LoginPage;
-    this.localSotrage.clear();
+    let loading = this.loadCtrl.create({
+      content: 'Cerrando sesion ...'
+    });
+    loading.present();
+    // this.localSotrage.remove('user');
+    // this.localSotrage.getItem('checklist').then( checklist => {
+    //   this.localSotrage.remove('checklist');
+    // }).catch(error => {
+
+    // });
+    // this.localSotrage.getItem('photo').then( photo => {
+    //   this.localSotrage.remove('photo');
+    // }).catch(error => {
+
+    // });
+    // this.localSotrage.getItem('firm').then( firm => {
+    //   this.localSotrage.remove('firm');
+    // }).catch(error => {
+      
+    // });
+    setTimeout(() => {
+      // this.event.unsubscribe("usuario:iniciado");
+      this.localSotrage.clear();
+      loading.dismiss();
+      this.menuCtrl.enable(false);
+      this.rootPage = LoginPage;
+    }, 1500)
   }
 
 }

@@ -3,6 +3,7 @@
     <ion-header>
         <ion-toolbar color="primary">
             <div class="img-container">
+                <!-- Esta Autenticado : {{ estaAutenticado }} -->
                 <ion-thumbnail img-profile>
                     <img image-rounder [src]="user?.foto" onError="this.src='assets/imgs/person.png'" />
                 </ion-thumbnail>
@@ -13,8 +14,9 @@
                                 <span text-profile-menu-primary>{{ user?.nombre }}</span>
                             </div>
                             <div>
-                                <ion-icon name="radio-button-on" small color="success"></ion-icon>
-                                <span text-profile-menu-secondary>En línea</span>
+                                <ion-icon name="radio-button-on" small [color]="sinInternet ? 'danger' : 'success'"></ion-icon>
+                                <span text-profile-menu-secondary *ngIf="!sinInternet">En línea</span>
+                                <span text-profile-menu-secondary *ngIf="sinInternet">Desconectado</span>
                             </div>
                         </ion-col>
                     </ion-row>
@@ -30,13 +32,13 @@
                 </ion-avatar>
                 <span ion-text color="primaryText">Gestión de Clientes</span>
             </button>
-            <button ion-item>
+            <!-- <button ion-item>
                 <ion-avatar item-start>
                     <img class="flat" src="assets/imgs/file-success.png" />
                 </ion-avatar>
                 <span ion-text color="primaryText">Gestiones Realizadas</span>
-            </button>
-            <button ion-item>
+            </button> -->
+            <!-- <button ion-item>
                 <ion-avatar item-start>
                     <img class="flat" src="assets/imgs/file.png" />
                 </ion-avatar>
@@ -47,7 +49,7 @@
                     <img class="flat" src="assets/imgs/archive.png" />
                 </ion-avatar>
                 <span ion-text color="primaryText">Gestiones no Enviadas</span>
-            </button>
+            </button> -->
         </ion-list>
         <ion-list>
             <ion-list-header></ion-list-header>

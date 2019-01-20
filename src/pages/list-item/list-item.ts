@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ApiHttpProvider } from '../../providers/api-http/api-http';
-import { FormGroup } from '@angular/forms';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()

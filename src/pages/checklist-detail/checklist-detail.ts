@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, PopoverOptions, AlertController, ModalController, LoadingController } from 'ionic-angular';
-import { PopoverItemChecklistPage } from '../popover-item-checklist/popover-item-checklist';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import { ApiHttpProvider } from '../../providers/api-http/api-http';
 import { ListItemPage } from '../list-item/list-item';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -23,8 +22,7 @@ export class ChecklistDetailPage {
   public photo: any;
   public firm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private popoverCtrl: PopoverController, private http: ApiHttpProvider,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: ApiHttpProvider,
               private alertCtrl: AlertController, private nativeStorage: NativeStorage,
               private modalCtrl: ModalController, private loadCtrl: LoadingController) {
     this.nativeStorage.getItem('firm').then(firm => {
@@ -92,14 +90,6 @@ export class ChecklistDetailPage {
       }
       loading.dismiss();
     });
-  }
-
-  public openPopover(): void {
-    const popoverOptions: PopoverOptions = {
-      'enableBackdropDismiss': true
-    }
-    let popover = this.popoverCtrl.create(PopoverItemChecklistPage);
-    popover.present();
   }
 
   public selectedCategoty(category: any): void {
@@ -171,6 +161,9 @@ export class ChecklistDetailPage {
             {
               'text': 'OK',
               'handler': () => {
+                this.nativeStorage.remove('checklist');
+                this.nativeStorage.remove('photo');
+                this.nativeStorage.remove('firm');
                 this.navCtrl.pop();
               }
             }
@@ -250,7 +243,6 @@ export class ChecklistDetailPage {
       });
     });
     modalFirm.present();
-
   }
 
 }
