@@ -44,7 +44,8 @@ export class CustomerManagementPage {
 
   private generateRequest(): void {
     const params = {
-      'token': this.user.token
+      'token': this.user.token,
+      'checklistType': '1'
     }
     this.apiHttp.get('/checklist', params).then( (response: any) => {
       this.checklist = JSON.parse(response.data);
