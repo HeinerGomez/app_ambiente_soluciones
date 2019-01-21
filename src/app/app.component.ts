@@ -17,11 +17,11 @@ export class MyApp {
   public estaAutenticado = false;
   public sinInternet = false;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, 
+  constructor(private platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, 
               private menuCtrl: MenuController, private localSotrage: NativeStorage,
               private loadCtrl: LoadingController, private event: Events, 
               private network: Network) {
-    platform.ready().then(() => {
+    this.platform.ready().then(() => {
       this.network.onDisconnect().subscribe(() => {
         this.sinInternet = true;
       });
@@ -79,28 +79,13 @@ export class MyApp {
       content: 'Cerrando sesion ...'
     });
     loading.present();
-    // this.localSotrage.remove('user');
-    // this.localSotrage.getItem('checklist').then( checklist => {
-    //   this.localSotrage.remove('checklist');
-    // }).catch(error => {
-
-    // });
-    // this.localSotrage.getItem('photo').then( photo => {
-    //   this.localSotrage.remove('photo');
-    // }).catch(error => {
-
-    // });
-    // this.localSotrage.getItem('firm').then( firm => {
-    //   this.localSotrage.remove('firm');
-    // }).catch(error => {
-      
-    // });
     setTimeout(() => {
       // this.event.unsubscribe("usuario:iniciado");
       this.localSotrage.clear();
       loading.dismiss();
       this.menuCtrl.enable(false);
       this.rootPage = LoginPage;
+      this.platform.exitApp();
     }, 1500)
   }
 

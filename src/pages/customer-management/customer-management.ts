@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { ChecklistDetailPage } from '../checklist-detail/checklist-detail';
 import { ApiHttpProvider } from '../../providers/api-http/api-http';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -36,6 +37,8 @@ export class CustomerManagementPage {
     this.localStorage.getItem('user').then(_user => {
       this.user = _user;
       this.generateRequest();
+    }).catch(error => {
+      this.navCtrl.setRoot(LoginPage);
     });
   }
 

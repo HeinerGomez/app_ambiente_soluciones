@@ -23,9 +23,9 @@
             <ion-row>
               <ion-col col-12>
                 <ion-item>
-                  <ion-label floating>Observacion <small *ngIf="item.ind_obliga == '1'">( Obligatorio )</small>
+                  <ion-label floating >Observacion <small *ngIf="item.ind_obliga == '1'">( Obligatorio )</small>
                   </ion-label>
-                  <ion-input type="text" name="respuesta" [(ngModel)]="form?.items[i].response" [required]="item.ind_obliga == '1'"></ion-input>
+                  <ion-textarea  name="respuesta" [(ngModel)]="form?.items[i].response" [required]="item.ind_obliga == '1'"></ion-textarea>
                 </ion-item>
               </ion-col>
             </ion-row>
