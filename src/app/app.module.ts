@@ -21,6 +21,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { HttpClientModule } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera';
 import { Network } from '@ionic-native/network';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { Network } from '@ionic-native/network';
     NativeStorage,
     HTTP,
     Camera,
-    Network
+    Network,
+    Geolocation
   ]
 })
 export class AppModule {}

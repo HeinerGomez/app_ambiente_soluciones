@@ -5,6 +5,7 @@ import { ListItemPage } from '../list-item/list-item';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { PopupCapturePhotoPage } from '../popup-capture-photo/popup-capture-photo';
 import { PopupCaptureFirmPage } from '../popup-capture-firm/popup-capture-firm';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @IonicPage()
@@ -21,10 +22,13 @@ export class ChecklistDetailPage {
   public user: any;
   public photo: any;
   public firm: any;
+  public latitude: any = 0;
+  public longitude: any = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: ApiHttpProvider,
               private alertCtrl: AlertController, private nativeStorage: NativeStorage,
-              private modalCtrl: ModalController, private loadCtrl: LoadingController) {
+              private modalCtrl: ModalController, private loadCtrl: LoadingController, 
+              private geolocation: Geolocation) {
     this.nativeStorage.getItem('firm').then(firm => {
       this.firm = firm;
     }).catch(error => {
@@ -46,6 +50,13 @@ export class ChecklistDetailPage {
       this.user = user;
       // obtengo las categorias
       this.generateRequest();
+    });
+    // obtengo la posicion del dispositivo actual
+    this.geolocation.getCurrentPosition().then( resp => {
+      this.latitude = resp.coords.latitude;
+      this.longitude = resp.coords.longitude;
+    }).catch( error => {
+      console.error('Error al capturar la geoposicion: ', JSON.stringify(error));
     });
   }
 
@@ -138,7 +149,7 @@ export class ChecklistDetailPage {
     }
   }
 
-  private sendForm(): void {
+  private sendForm(): void {    
     let loading = this.loadCtrl.create({
       content: 'Cargando ...'
     });
@@ -149,7 +160,9 @@ export class ChecklistDetailPage {
         'checklist': checklist,
         'token': this.user.token,
         'firm': this.firm,
-        'photo': this.photo
+        'photo': this.photo,
+        'latitude': this.latitude,
+        'longitude': this.longitude
       };
       this.http.post('/checklistanswered', params).subscribe((response: any) => {
         console.log(JSON.stringify(response));

@@ -2,11 +2,11 @@
   <ion-navbar color="text_icons">
     <ion-title text-center>Firmar</ion-title>
     <ion-buttons end>
-        <button ion-button (tap)="closeModal()">
-          <span ion-text color="primary" showWhen="ios">Cerrar</span>
-          <ion-icon name="md-close" color="primary" showWhen="android,windows" style="font-size: 27px"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button (tap)="closeModal()">
+        <span ion-text color="primary" showWhen="ios">Cerrar</span>
+        <ion-icon name="md-close" color="primary" showWhen="android,windows" style="font-size: 27px"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -22,12 +22,12 @@
     </ion-row>
   </ion-grid>
   <div [ngStyle]="{'margin-top': '70%'}">
-      <ion-col col-12>
-        <button ion-button color="danger" block (tap)="clearDraw()">Borrar</button>
-      </ion-col>
+    <ion-col col-12>
+      <button ion-button color="danger" block (tap)="clearDraw()">Borrar</button>
+    </ion-col>
   </div>
 </ion-content>
 
 <ion-footer>
-  <button ion-button color="secondary" block (tap)="saveFirm()" >Firmar</button>
+  <button ion-button color="secondary" block (tap)="saveFirm()">Firmar</button>
 </ion-footer>

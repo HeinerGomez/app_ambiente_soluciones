@@ -24,6 +24,7 @@ export class ApiHttpProvider {
 
   public post(endPoint: string, body: any) {
     const full_url = this.url_api + endPoint;
+    // console.warn("La Url FULL: ", full_url, JSON.stringify(body));
     let postData = new FormData();
     postData.append('body', JSON.stringify(body));
     postData.append('keyClient', ENVIRONMENT.KEY_CLIENT);
