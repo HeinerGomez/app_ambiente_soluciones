@@ -129,9 +129,9 @@ export class ChecklistDetailPage {
     if (!this.firm.isCapture) {
       isValidForm = false;
     }
-    // verifico que la foto se halla tomado
+    // verifico que la foto se halla tomado, si no envio vacio
     if (!this.photo.isCapture) {
-      isValidForm = false;
+      this.photo.img = '';
     }
 
     if (isValidForm) {

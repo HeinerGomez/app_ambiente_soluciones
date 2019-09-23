@@ -29,7 +29,8 @@ export class MyApp {
         this.sinInternet = false;
       });
       this.getDataUser();
-      statusBar.styleDefault();
+      statusBar.backgroundColorByHexString('#036F9D');
+      statusBar.styleLightContent();
       splashScreen.hide();
     });
   }
